@@ -1,5 +1,6 @@
 package com.chainsys.product.dao;
 
+import java.util.List;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +20,7 @@ public class ProductDAOImpl implements ProductDAO {
 	private static PreparedStatement pstmt;
 	private static ResultSet rs;
 	private static Set<Product> productSet;
+	private static ArrayList<String> namelist;
 
 	public ProductDAOImpl() {
 		try {
@@ -44,6 +47,20 @@ public class ProductDAOImpl implements ProductDAO {
 			e.printStackTrace();
 		}
 		return productSet;
+	}
+	@Override
+	public List<String> findAllName() {
+		try {
+			pstmt = con.prepareStatement("select name from product_2590");
+			rs = pstmt.executeQuery();
+			 namelist = new ArrayList<>();
+			while (rs.next()) {
+				namelist.add(rs.getString("name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return namelist;
 	}
 
 	@Override
@@ -122,7 +139,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public Product findByDate(LocalDate expiryDate) {
 		Product product = null;
 		try {
-			pstmt = con.prepareStatement("select * from product_2611 where expiry_date=?");
+			pstmt = con.prepareStatement("select * from product_2590 where expiry_date=?");
 			pstmt.setDate(1, Date.valueOf(expiryDate));
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -158,6 +175,13 @@ public class ProductDAOImpl implements ProductDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+	
+	@Override
+	public void delete_date(LocalDate expiryDate) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

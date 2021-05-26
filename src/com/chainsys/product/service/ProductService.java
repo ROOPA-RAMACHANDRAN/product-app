@@ -1,6 +1,6 @@
 package com.chainsys.product.service;
 
-
+import java.util.List;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import com.chainsys.product.model.Product;
 public interface ProductService {
 	Set<Product> findAll();
 	
-	Set<Product> findByDate();
+	List<String> findAllName();
 
 	Product findById(int id) throws ProductNotFoundException;
 	

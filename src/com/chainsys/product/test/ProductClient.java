@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.List;
 
 import com.chainsys.product.exception.ProductNotFoundException;
 import com.chainsys.product.model.Product;
@@ -14,6 +15,8 @@ public class ProductClient {
 	public static void main(String[] args) {
 
 		Set<Product> productSet;
+		List<String> namelist;
+		
 		ProductService service = new ProductServiceImpl();
 		String date;
 		DateTimeFormatter dateFormat;
@@ -41,7 +44,7 @@ public class ProductClient {
 		case 3:
 			System.out.println("Find the Product By Name");
 			System.out.println("Enter the Product Name");
-			name= scanner.next();
+			name = scanner.next();
 			try {
 				Product product = service.findByName(name);
 				System.out.println(product);
@@ -70,14 +73,14 @@ public class ProductClient {
 			productSet = service.findAll();
 			System.out.println(productSet);
 			break;
-			
+
 		case 6:
 			System.out.println("Update the Product Expiry date Based on the Id");
 			date = "02/01/2023";
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 			Product updateProduct1 = new Product(3, "Milk", LocalDate.parse(date, dateFormat));
 			try {
-				service.update_expire(updateProduct1 );
+				service.update_expire(updateProduct1);
 				productSet = service.findAll();
 				System.out.println(productSet);
 			} catch (ProductNotFoundException e) {
@@ -88,19 +91,19 @@ public class ProductClient {
 		case 7:
 			System.out.println("Deleting a Product By Date");
 			try {
-				 	date = "06/05/2021";
-					dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-					service.delete_date(LocalDate.parse(date,dateFormat));
+				date = "06/05/2021";
+				dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+				service.delete_date(LocalDate.parse(date, dateFormat));
 				productSet = service.findAll();
 				System.out.println(productSet);
 			} catch (ProductNotFoundException e) {
 			}
-			
+
 			break;
 		case 8:
 			System.out.println("Deleting a Product");
 			System.out.println("Enter the Product Name");
-			name= scanner.next();
+			name = scanner.next();
 			try {
 				service.delete_name(name);
 				productSet = service.findAll();
@@ -119,8 +122,12 @@ public class ProductClient {
 			} catch (ProductNotFoundException e) {
 			}
 			break;
-			
-			
+		case 10:
+			System.out.println("Find All Products Names");
+			namelist = service.findAllName();
+			System.out.println(namelist);
+			break;
+
 		default:
 			break;
 		}

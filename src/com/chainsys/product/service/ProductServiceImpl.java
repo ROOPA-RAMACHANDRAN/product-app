@@ -1,15 +1,17 @@
 
 package com.chainsys.product.service;
 
+
 import java.time.LocalDate;
 import java.util.Set;
-
+import java.util.List;
 import com.chainsys.product.dao.ProductDAO;
 import com.chainsys.product.dao.ProductDAOImpl;
 import com.chainsys.product.exception.ProductNotFoundException;
 import com.chainsys.product.model.Product;
 
 public class ProductServiceImpl implements ProductService {
+	
 	private static ProductDAO dao;
 
 	public ProductServiceImpl() {
@@ -20,8 +22,14 @@ public class ProductServiceImpl implements ProductService {
 	public Set<Product> findAll() {
 		return dao.findAll();
 	}
-
 	
+	
+	@Override
+	public List<String> findAllName() {
+		// TODO Auto-generated method stub
+		return dao.findAllName();
+	}
+
 	@Override
 	public Product findByDate(LocalDate date) throws ProductNotFoundException {
 		Product Product = dao.findByDate(date);
@@ -57,7 +65,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void save(Product Product) {
 		dao.save(Product);
-
 	}
 
 	@Override
@@ -110,6 +117,8 @@ public class ProductServiceImpl implements ProductService {
 			dao.delete(id);
 		}
 	}
+
+	
 
 
 }
