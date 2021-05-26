@@ -17,4 +17,6 @@ public interface ProductDAO {
 	void update_expire(Product updateProduct1);
 
 	void delete(int id);
+
+	Product delete_date(String date);
 }

@@ -114,7 +114,21 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 
 	}
-	
+	@Override
+	public Product delete_date(String date) {
+		Product product = null;
+		try {
+			pstmt = con.prepareStatement("select * from product_2590 where date=?");
+			pstmt.setString(2, date);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				product = new Product(rs.getInt("id"), rs.getString("name"), rs.getDate("expiry_date").toLocalDate());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return product;
+	}
 
 
 	@Override
