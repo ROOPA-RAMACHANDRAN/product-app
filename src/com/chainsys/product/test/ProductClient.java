@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Date;
 import java.util.List;
 
 import com.chainsys.product.exception.ProductNotFoundException;
@@ -17,6 +18,7 @@ public class ProductClient {
 		Set<Product> productSet;
 		List<String> namelist;
 		List<Integer> idlist;
+		List<Date> datelist;
 		ProductService service = new ProductServiceImpl();
 		String date;
 		DateTimeFormatter dateFormat;
@@ -132,6 +134,12 @@ public class ProductClient {
 			idlist = service. findAllId();
 			System.out.println(idlist);
 			break;
+		case 12:
+			System.out.println("Find All Expiry of the Product");
+			datelist = service. findAllDate();
+			System.out.println(datelist);
+			break;
+		
 
 		default:
 			break;

@@ -4,6 +4,7 @@ package com.chainsys.product.service;
 
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.Date;
 import java.util.List;
 import com.chainsys.product.dao.ProductDAO;
 import com.chainsys.product.dao.ProductDAOImpl;
@@ -30,11 +31,19 @@ public class ProductServiceImpl implements ProductService {
 		return dao.findAllName();
 	}
 	
+	
+
+	
 
 	@Override
 	public List<Integer> findAllId() {
 		// TODO Auto-generated method stub
 		return dao.findAllId();
+	}
+	@Override
+	public List<Date> findAllDate() {
+		// TODO Auto-generated method stub
+		return dao.findAllDate();
 	}
 
 	@Override

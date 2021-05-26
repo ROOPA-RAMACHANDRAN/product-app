@@ -2,7 +2,7 @@ package com.chainsys.product.dao;
 
 import java.util.List;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +22,7 @@ public class ProductDAOImpl implements ProductDAO {
 	private static Set<Product> productSet;
 	private static ArrayList<String> namelist;
 	private static ArrayList<Integer> idlist;
+	private static ArrayList<Date> datelist;
 	
 
 	public ProductDAOImpl() {
@@ -77,6 +78,20 @@ public class ProductDAOImpl implements ProductDAO {
 			e.printStackTrace();
 		}
 		return idlist;
+	}
+	@Override
+	public List <Date> findAllDate(){
+		try {
+			pstmt = con.prepareStatement("select expiry_date from product_2590");
+			rs = pstmt.executeQuery();
+			 datelist = new ArrayList<>();
+			while (rs.next()) {
+				datelist.add(rs.getDate("expiry_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datelist;
 	}
 
 	@Override

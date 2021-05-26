@@ -1,5 +1,6 @@
 package com.chainsys.product.service;
 
+import java.util.Date;
 import java.util.List;
 import java.time.LocalDate;
 import java.util.Set;
@@ -12,9 +13,11 @@ public interface ProductService {
 	
 	List<String> findAllName();
 	List<Integer> findAllId();
+	List<Date> findAllDate();
+
 
 	Product findById(int id) throws ProductNotFoundException;
-	
+
 	void delete_date(LocalDate expiryDate) throws ProductNotFoundException;
 	
 	void save(Product Product);
@@ -32,7 +35,6 @@ public interface ProductService {
 	void delete_name(String name) throws ProductNotFoundException;
 
 	
-
 	
 
 }
