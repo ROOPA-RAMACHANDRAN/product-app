@@ -20,7 +20,7 @@ public interface ProductDAO {
 	void delete(int id);
 	
 
-	void delete(LocalDate date);
+	void delete_date(LocalDate expiryDate);
 
 	Product findByDate(LocalDate date);
 

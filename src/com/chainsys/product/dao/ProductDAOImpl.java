@@ -107,7 +107,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public void update_expire(Product updateproduct1) {
 		try {
 			pstmt = con.prepareStatement("update product_2590 set expiry_date=? where id=?");
-			pstmt.setDate(1,Date.valueOf(updateproduct1.getExpiryDate());
+			pstmt.setDate(1,Date.valueOf(updateproduct1.getExpiryDate()));
 			pstmt.setInt(2, updateproduct1.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -116,20 +116,26 @@ public class ProductDAOImpl implements ProductDAO {
 
 	}
 	
+	
+		
 	@Override
-	public void delete(LocalDate date) {
+	public Product findByDate(LocalDate expiryDate) {
+		Product product = null;
 		try {
-			pstmt = con.prepareStatement("delete product_2591 where expiry_date=?");
-			pstmt.setDate(1, Date.valueOf(date));
-			pstmt.executeUpdate();
+			pstmt = con.prepareStatement("select * from product_2611 where expiry_date=?");
+			pstmt.setDate(1, Date.valueOf(expiryDate));
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				product = new Product(rs.getInt("id"), rs.getString("name"), rs.getDate("expiry_date").toLocalDate());
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+		return product;
 	}
 
-	@Override
+	
 	@Override
 	public void delete_name(String name) {
 		try {
@@ -141,7 +147,7 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 
 	}
-
+	
 	@Override
 	public void delete(int id) {
 		try {
@@ -154,4 +160,6 @@ public class ProductDAOImpl implements ProductDAO {
 
 	}
 
+	
 }
+	

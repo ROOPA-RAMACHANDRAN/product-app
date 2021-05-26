@@ -83,13 +83,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void delete(LocalDate date) throws ProductNotFoundException {
-		Product Product = dao.findByDate(date);
+	public void delete_date(LocalDate expiryDate) throws ProductNotFoundException {
+		Product Product = dao.findByDate(expiryDate);
 		if (Product == null) {
 			throw new ProductNotFoundException("Product doesn't exist!!");
 		} else {
-			dao.delete(date);
-		}		
+			dao.delete_date(expiryDate);
+		}
 	}
 	@Override
 	public void delete_name(String name) throws ProductNotFoundException {
@@ -97,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
 		if (Product == null) {
 			throw new ProductNotFoundException("Product doesn't exist!!");
 		} else {
-			dao.delete(name);
+			dao.delete_name(name);
 		}
 	}
 
@@ -110,6 +110,6 @@ public class ProductServiceImpl implements ProductService {
 			dao.delete(id);
 		}
 	}
-	
+
 
 }
