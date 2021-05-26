@@ -9,6 +9,7 @@ import com.chainsys.product.model.Product;
 public interface ProductDAO {
 	Set<Product> findAll();
 	List<String> findAllName();
+	List<Integer> findAllId();
 	
 	Product findById(int id);
 	Product findByName(String name);
@@ -26,6 +27,7 @@ public interface ProductDAO {
 	Product findByDate(LocalDate date);
 
 	void delete_name(String name);
+	
 	
 
 	

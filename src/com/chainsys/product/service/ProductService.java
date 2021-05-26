@@ -11,6 +11,7 @@ public interface ProductService {
 	Set<Product> findAll();
 	
 	List<String> findAllName();
+	List<Integer> findAllId();
 
 	Product findById(int id) throws ProductNotFoundException;
 	

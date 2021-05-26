@@ -29,6 +29,13 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.findAllName();
 	}
+	
+
+	@Override
+	public List<Integer> findAllId() {
+		// TODO Auto-generated method stub
+		return dao.findAllId();
+	}
 
 	@Override
 	public Product findByDate(LocalDate date) throws ProductNotFoundException {

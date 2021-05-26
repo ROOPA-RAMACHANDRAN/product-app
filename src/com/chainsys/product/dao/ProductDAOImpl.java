@@ -21,6 +21,8 @@ public class ProductDAOImpl implements ProductDAO {
 	private static ResultSet rs;
 	private static Set<Product> productSet;
 	private static ArrayList<String> namelist;
+	private static ArrayList<Integer> idlist;
+	
 
 	public ProductDAOImpl() {
 		try {
@@ -61,6 +63,20 @@ public class ProductDAOImpl implements ProductDAO {
 			e.printStackTrace();
 		}
 		return namelist;
+	}
+	@Override
+	public List<Integer> findAllId() {
+		try {
+			pstmt = con.prepareStatement("select id from product_2590");
+			rs = pstmt.executeQuery();
+			 idlist = new ArrayList<>();
+			while (rs.next()) {
+				idlist.add(rs.getInt("id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return idlist;
 	}
 
 	@Override
