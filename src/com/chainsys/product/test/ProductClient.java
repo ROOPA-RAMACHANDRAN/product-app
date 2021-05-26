@@ -52,7 +52,7 @@ public class ProductClient {
 			System.out.println("Update the Product Name Based on the Id");
 			date = "06/05/2019";
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-			Product updateProduct = new Product(4, "Pencil", LocalDate.parse(date, dateFormat));
+			Product updateProduct = new Product(3, "Pencil", LocalDate.parse(date, dateFormat));
 			try {
 				service.update(updateProduct);
 				productSet = service.findAll();
@@ -73,7 +73,7 @@ public class ProductClient {
 			
 		case 6:
 			System.out.println("Update the Product Expiry date Based on the Id");
-			date = "01/01/2023";
+			date = "02/01/2023";
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 			Product updateProduct1 = new Product(3, "Milk", LocalDate.parse(date, dateFormat));
 			try {
@@ -86,18 +86,30 @@ public class ProductClient {
 			break;
 
 		case 7:
-			System.out.println("Deleting a Product ");
-			System.out.println("Enter the Product Expiry Date");
-			date = scanner.next();
+           System.out.println("Deleting a Product By Expiry Date");
+			
 			try {
-				service.delete_date(date);
+				System.out.println("Enter the Product Expiry Date");
+				date = scanner.next();
+				dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+				service.delete(LocalDate.parse(date,dateFormat));
 				productSet = service.findAll();
 				System.out.println(productSet);
 			} catch (ProductNotFoundException e) {
 			}
-			break;
-		
 		case 8:
+			System.out.println("Deleting a Product");
+			System.out.println("Enter the Product Name");
+			name= scanner.next();
+			try {
+				service.delete_name(name);
+				productSet = service.findAll();
+				System.out.println(productSet);
+			} catch (ProductNotFoundException e) {
+			}
+			
+		case 9:
 			System.out.println("Deleting a Product");
 			System.out.println("Enter the Product Id");
 			id = scanner.nextInt();

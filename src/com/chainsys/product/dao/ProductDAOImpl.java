@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -114,22 +115,32 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 
 	}
+	
 	@Override
-	public Product delete_date(String date) {
-		Product product = null;
+	public void delete(LocalDate date) {
 		try {
-			pstmt = con.prepareStatement("select * from product_2590 where date=?");
-			pstmt.setString(2, date);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				product = new Product(rs.getInt("id"), rs.getString("name"), rs.getDate("expiry_date").toLocalDate());
-			}
+			pstmt = con.prepareStatement("delete product_2591 where expiry_date=?");
+			pstmt.setDate(1, Date.valueOf(date));
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return product;
+		
+		
 	}
 
+	@Override
+	@Override
+	public void delete_name(String name) {
+		try {
+			pstmt = con.prepareStatement("delete product_2590 where id=?");
+			pstmt.setString(1, name);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	@Override
 	public void delete(int id) {
